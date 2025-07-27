@@ -8,35 +8,41 @@ import ProductDetails from "./pages/Shop/ProductDetails";
 import Cart from "./pages/Shop/Cart";
 import Checkout from "./pages/Shop/Checkout";
 import PrivateRoute from "./utils/PrivateRoute";
-
+import Navbar from "./components/Navbar"; // ⬅️ Dodaj import
 
 export default function App() {
   return (
     <Router>
+      <Navbar /> {/* ⬅️ Prikazujemo navigaciju uvijek, s različitim sadržajem */}
       <Routes>
         {/* Admin */}
-        <Route path="/admin/dashboard" element={
+        <Route
+          path="/admin/dashboard"
+          element={
             <PrivateRoute>
               <Dashboard />
             </PrivateRoute>
           }
         />
-
-        <Route path="/admin/orders" element={
+        <Route
+          path="/admin/orders"
+          element={
             <PrivateRoute>
               <Orders />
             </PrivateRoute>
           }
         />
-
-        <Route path="/admin/products/new" element={
+        <Route
+          path="/admin/products/new"
+          element={
             <PrivateRoute>
               <ProductForm />
             </PrivateRoute>
           }
         />
-
-        <Route path="/admin/products/edit/:id" element={
+        <Route
+          path="/admin/products/edit/:id"
+          element={
             <PrivateRoute>
               <ProductForm />
             </PrivateRoute>
@@ -53,3 +59,4 @@ export default function App() {
     </Router>
   );
 }
+

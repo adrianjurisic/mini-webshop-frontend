@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import BASE_URL from "../../config";
 
 export default function ProductForm() {
   const navigate = useNavigate();
@@ -17,7 +18,7 @@ export default function ProductForm() {
 
   useEffect(() => {
     if (isEdit) {
-      fetch(`http://localhost:8000/products/${id}`)
+      fetch(`${BASE_URL}/products/${id}`)
         .then((res) => res.json())
         .then((data) => {
           setForm({
@@ -39,8 +40,8 @@ export default function ProductForm() {
 
     const method = isEdit ? "PUT" : "POST";
     const url = isEdit
-      ? `http://localhost:8000/products/${id}`
-      : "http://localhost:8000/products";
+      ? `${BASE_URL}/products/${id}`
+      : `${BASE_URL}/products`;
 
     const data = {
       name: form.name,
@@ -74,28 +75,44 @@ export default function ProductForm() {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-4">
-      <h2 className="text-xl font-bold mb-4">
-        {isEdit ? "Uredi proizvod" : "Dodaj novi proizvod"}
+    <div className="max-w-2xl mx-auto p-6 bg-white rounded-lg shadow-md">
+      <h2 className="text-2xl font-bold mb-6 text-gray-800 text-center">
+        {isEdit ? "✏️ Uredi proizvod" : "➕ Dodaj novi proizvod"}
       </h2>
-      <form onSubmit={handleSubmit} className="space-y-3">
-        {["name", "description", "image_url", "price", "quantity"].map((field) => (
-          <input
-            key={field}
-            name={field}
-            placeholder={field}
-            value={form[field]}
-            onChange={handleChange}
-            type={field === "price" || field === "quantity" ? "number" : "text"}
-            className="w-full border rounded p-2"
-            required
-          />
+      <form onSubmit={handleSubmit} className="space-y-5">
+        {[
+          { name: "name", label: "Naziv proizvoda" },
+          { name: "description", label: "Opis" },
+          { name: "image_url", label: "URL slike" },
+          { name: "price", label: "Cijena (KM)", type: "number", min: 0.1, step: 0.1 },
+          { name: "quantity", label: "Količina", type: "number", min: 1 },
+        ].map((field) => (
+          <div key={field.name}>
+            <label htmlFor={field.name} className="block text-sm font-medium text-gray-700 mb-1">
+              {field.label}
+            </label>
+            <input
+              id={field.name}
+              name={field.name}
+              value={form[field.name]}
+              onChange={handleChange}
+              type={field.type || "text"}
+              min={field.min}
+              step={field.step}
+              className="w-full px-4 py-2 border rounded-md shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              required
+            />
+          </div>
         ))}
-        <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
-          {isEdit ? "Spremi promjene" : "Dodaj proizvod"}
+        <button
+          type="submit"
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition"
+        >
+          {isEdit ? "💾 Spremi promjene" : "✅ Dodaj proizvod"}
         </button>
       </form>
     </div>
   );
 }
+
 

@@ -9,7 +9,7 @@ export default function Login() {
   const handleLogin = (e) => {
     e.preventDefault();
     if (username === "adrian" && password === "admin123") {
-      localStorage.setItem("admin", "true");
+      localStorage.setItem("isAdmin", "true");
       navigate("/admin/dashboard");
     } else {
       alert("Pogrešni podaci");

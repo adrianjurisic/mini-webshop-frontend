@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import BASE_URL from "../../config";
 
 export default function Dashboard() {
   const navigate = useNavigate();
   const [products, setProducts] = useState([]);
 
   const fetchProducts = () => {
-    fetch("http://localhost:8000/products")
+    fetch(`${BASE_URL}/products`)
       .then((res) => res.json())
-      .then(setProducts);
+      .then(setProducts)
+      .catch(console.error);
   };
 
   useEffect(() => {
@@ -17,47 +19,70 @@ export default function Dashboard() {
 
   const handleDelete = (id) => {
     if (window.confirm("Obrisati proizvod?")) {
-      fetch(`http://localhost:8000/products/${id}`, { method: "DELETE" })
+      fetch(`${BASE_URL}/products/${id}`, { method: "DELETE" })
         .then(() => fetchProducts())
         .catch(console.error);
     }
   };
 
   return (
-    <div className="p-4">
-      <div className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">Admin Dashboard</h1>
+    <div className="max-w-6xl mx-auto p-6">
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">📦 Admin Panel — Proizvodi</h1>
         <button
           onClick={() => navigate("/admin/products/new")}
-          className="bg-green-600 text-white px-4 py-2 rounded"
+          className="bg-green-600 hover:bg-green-700 text-white px-6 py-2 rounded shadow"
         >
           + Novi proizvod
         </button>
       </div>
 
-      <ul className="space-y-3">
-        {products.map((p) => (
-          <li key={p.id} className="border p-4 rounded shadow">
-            <div className="text-lg font-semibold">{p.name}</div>
-            <div>Cijena: {p.price} KM</div>
-            <div>Količina: {p.quantity}</div>
-            <div className="flex gap-2 mt-2">
-              <button
-                onClick={() => navigate(`/admin/products/edit/${p.id}`)}
-                className="text-blue-600 underline"
-              >
-                Uredi
-              </button>
-              <button
-                onClick={() => handleDelete(p.id)}
-                className="text-red-600 underline"
-              >
-                Obriši
-              </button>
+      {products.length === 0 ? (
+        <p className="text-gray-600 text-center">Nema proizvoda u sistemu.</p>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+          {products.map((p) => (
+            <div
+              key={p.id}
+              className="border rounded-lg p-4 shadow bg-white flex flex-col justify-between h-full"
+            >
+              <div>
+                {p.image_url && (
+                  <img
+                    src={p.image_url}
+                    alt={p.name}
+                    className="w-full h-40 object-cover rounded mb-3"
+                  />
+                )}
+                <h2 className="text-xl font-semibold mb-1">{p.name}</h2>
+                <p className="text-gray-600 text-sm mb-1 line-clamp-2">
+                  {p.description}
+                </p>
+                <p className="text-blue-700 font-semibold mb-1">
+                  {p.price.toFixed(2)} KM
+                </p>
+                <p className="text-sm text-gray-500 mb-4">
+                  Količina: {p.quantity}
+                </p>
+              </div>
+              <div className="flex gap-3 mt-auto">
+                <button
+                  onClick={() => navigate(`/admin/products/edit/${p.id}`)}
+                  className="flex-1 bg-yellow-500 hover:bg-yellow-600 text-white py-1 rounded"
+                >
+                  Uredi
+                </button>
+                <button
+                  onClick={() => handleDelete(p.id)}
+                  className="flex-1 bg-red-600 hover:bg-red-700 text-white py-1 rounded"
+                >
+                  Obriši
+                </button>
+              </div>
             </div>
-          </li>
-        ))}
-      </ul>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

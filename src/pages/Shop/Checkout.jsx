@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import BASE_URL from "../../config";
 
 export default function Checkout() {
   const [form, setForm] = useState({
@@ -34,7 +35,7 @@ export default function Checkout() {
       kreirano: new Date().toISOString(),
     };
 
-    fetch("http://localhost:8000/orders", {
+    fetch(`${BASE_URL}/orders`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(payload),
@@ -73,3 +74,4 @@ export default function Checkout() {
     </div>
   );
 }
+
