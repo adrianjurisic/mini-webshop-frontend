@@ -30,29 +30,45 @@ export default function ProductDetails() {
   if (!product) return <div className="p-6 text-center">Učitavanje...</div>;
 
   return (
-    <div className="max-w-5xl mx-auto p-6">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white shadow-md rounded-lg overflow-hidden">
-        <img
-          src={product.image_url}
-          alt={product.name}
-          className="w-full h-96 object-cover"
-        />
+    <div className="max-w-6xl mx-auto p-4 md:p-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 bg-white shadow-lg rounded-xl overflow-hidden">
+        {/* Slika proizvoda */}
+        <div className="flex items-center justify-center p-4 md:p-6 bg-gray-50">
+          <img
+            src={product.image_url}
+            alt={product.name}
+            className="max-h-96 w-full object-contain rounded-lg border shadow-sm"
+          />
+        </div>
 
-        <div className="p-6 flex flex-col justify-between">
+        {/* Detalji proizvoda */}
+        <div className="flex flex-col justify-between p-4 md:p-6 space-y-6">
           <div>
-            <h1 className="text-3xl font-bold mb-3 text-gray-900">{product.name}</h1>
-            <p className="text-gray-700 mb-4">{product.description}</p>
-            <p className="text-lg font-semibold text-blue-600 mb-2">
-              {product.price.toFixed(2)} KM
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+              {product.name}
+            </h1>
+
+            <p className="text-gray-700 text-base md:text-lg leading-relaxed mb-4">
+              {product.description}
             </p>
+
+            <div className="mb-4">
+              <span className="text-2xl font-semibold text-blue-600">
+                {product.price.toFixed(2)} KM
+              </span>
+            </div>
+
             <p className="text-sm text-gray-500">
-              Na stanju: {product.quantity} kom
+              Dostupno:{" "}
+              <span className="font-medium text-gray-800">
+                {product.quantity} kom
+              </span>
             </p>
           </div>
 
           <button
             onClick={addToCart}
-            className="mt-6 w-full bg-blue-600 hover:bg-blue-700 text-white text-center font-medium py-3 rounded-lg transition"
+            className="w-full py-3 px-5 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition"
           >
             Dodaj u košaricu
           </button>
@@ -61,4 +77,3 @@ export default function ProductDetails() {
     </div>
   );
 }
-

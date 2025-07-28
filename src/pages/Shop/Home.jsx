@@ -4,6 +4,7 @@ import BASE_URL from "../../config";
 
 export default function Home() {
   const [products, setProducts] = useState([]);
+  const [toastVisible, setToastVisible] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,11 +29,12 @@ export default function Home() {
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
-    alert("Proizvod dodat u košaricu!");
+    setToastVisible(true);
+    setTimeout(() => setToastVisible(false), 2000);
   };
 
   return (
-    <div className="bg-[#f9fafb] min-h-screen py-10 px-4">
+    <div className="bg-[#f9fafb] min-h-screen py-10 px-4 relative">
       <div className="max-w-7xl mx-auto">
         <h1 className="text-3xl font-bold text-center mb-10 text-[#111827]">
           Naša ponuda
@@ -48,7 +50,7 @@ export default function Home() {
                 <img
                   src={p.image_url}
                   alt={p.name}
-                  className="w-full h-48 object-cover rounded mb-4"
+                  className="w-full h-48 object-contain bg-white p-2 rounded border"
                 />
               )}
               <h2 className="text-lg font-semibold mb-1 text-[#111827]">
@@ -77,6 +79,13 @@ export default function Home() {
           ))}
         </div>
       </div>
+      
+      {toastVisible && (
+        <div className="fixed bottom-6 right-6 z-50 bg-green-500 text-white px-4 py-2 rounded shadow-lg animate-slide-in-out">
+          ✅ Proizvod dodat u korpu
+        </div>
+      )}
     </div>
   );
 }
+

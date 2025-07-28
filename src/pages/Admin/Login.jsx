@@ -17,27 +17,36 @@ export default function Login() {
   };
 
   return (
-    <div className="max-w-md mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Admin Login</h1>
-      <form onSubmit={handleLogin} className="space-y-4">
-        <input
-          type="text"
-          placeholder="Korisničko ime"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          className="w-full p-2 border rounded"
-        />
-        <input
-          type="password"
-          placeholder="Lozinka"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="w-full p-2 border rounded"
-        />
-        <button type="submit" className="bg-blue-600 text-white w-full p-2 rounded">
-          Prijavi se
-        </button>
-      </form>
+    <div className="min-h-screen bg-gray-50 px-4 pt-20">
+      <div className="w-full max-w-lg mx-auto bg-white rounded-2xl shadow-lg p-8">
+        <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">
+          Admin Prijava
+        </h1>
+        <form onSubmit={handleLogin} className="space-y-5">
+          <input
+            type="text"
+            placeholder="Korisničko ime"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <input
+            type="password"
+            placeholder="Lozinka"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-3 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
+          <button
+            type="submit"
+            className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded"
+          >
+            Prijavi se
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
+
+

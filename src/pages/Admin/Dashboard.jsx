@@ -51,7 +51,7 @@ export default function Dashboard() {
                   <img
                     src={p.image_url}
                     alt={p.name}
-                    className="w-full h-40 object-cover rounded mb-3"
+                    className="w-full h-48 object-contain bg-white p-2 rounded border"
                   />
                 )}
                 <h2 className="text-xl font-semibold mb-1">{p.name}</h2>

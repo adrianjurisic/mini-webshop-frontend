@@ -8,14 +8,13 @@ import ProductDetails from "./pages/Shop/ProductDetails";
 import Cart from "./pages/Shop/Cart";
 import Checkout from "./pages/Shop/Checkout";
 import PrivateRoute from "./utils/PrivateRoute";
-import Navbar from "./components/Navbar"; // ⬅️ Dodaj import
+import Navbar from "./components/Navbar";
 
 export default function App() {
   return (
     <Router>
-      <Navbar /> {/* ⬅️ Prikazujemo navigaciju uvijek, s različitim sadržajem */}
+      <Navbar />
       <Routes>
-        {/* Admin */}
         <Route
           path="/admin/dashboard"
           element={
@@ -49,9 +48,7 @@ export default function App() {
           }
         />
         <Route path="/admin/login" element={<Login />} />
-
-        {/* Shop */}
-        <Route path="/shop" element={<Home />} />
+        <Route path="/" element={<Home />} />
         <Route path="/shop/product/:id" element={<ProductDetails />} />
         <Route path="/shop/cart" element={<Cart />} />
         <Route path="/shop/checkout" element={<Checkout />} />
@@ -59,4 +56,3 @@ export default function App() {
     </Router>
   );
 }
-

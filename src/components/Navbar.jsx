@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import CartIcon from "../components/CartIcon";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -6,14 +7,25 @@ export default function Navbar() {
 
   const handleLogout = () => {
     localStorage.removeItem("isAdmin");
-    navigate("/shop");
+    navigate("/");
+  };
+
+  const handleLogoClick = () => {
+    if (isAdmin) {
+      navigate("/admin/dashboard");
+    } else {
+      navigate("/");
+    }
   };
 
   return (
     <nav className="bg-gray-900 text-white px-6 py-3 flex justify-between items-center shadow-md">
-      <Link to="/" className="text-xl font-bold">
+      <button
+        onClick={handleLogoClick}
+        className="text-xl font-bold hover:underline"
+      >
         MiniWebshop
-      </Link>
+      </button>
 
       <div className="flex gap-4 items-center">
         {isAdmin ? (
@@ -33,11 +45,11 @@ export default function Navbar() {
           </>
         ) : (
           <>
-            <Link to="/shop" className="hover:underline">
+            <Link to="/" className="hover:underline">
               Početna
             </Link>
             <Link to="/shop/cart" className="hover:underline">
-              Košarica
+              <CartIcon />
             </Link>
             <Link
               to="/admin/login"
@@ -51,4 +63,3 @@ export default function Navbar() {
     </nav>
   );
 }
-
