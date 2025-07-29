@@ -71,7 +71,7 @@ export default function Checkout() {
         if (res.ok) {
           localStorage.removeItem("cart");
           alert("Narudžba je uspješno poslana!");
-          navigate("/shop");
+          navigate("/");
         } else {
           throw new Error("Greška u slanju narudžbe");
         }

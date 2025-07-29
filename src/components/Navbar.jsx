@@ -1,5 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import CartIcon from "../components/CartIcon";
+import logo from "../logo.svg";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -20,11 +21,8 @@ export default function Navbar() {
 
   return (
     <nav className="bg-gray-900 text-white px-6 py-3 flex justify-between items-center shadow-md">
-      <button
-        onClick={handleLogoClick}
-        className="text-xl font-bold hover:underline"
-      >
-        MiniWebshop
+      <button onClick={handleLogoClick} className="flex items-center gap-2">
+        <img src={logo} alt="MiniWebshop logo" className="h-8 w-auto" />
       </button>
 
       <div className="flex gap-4 items-center">

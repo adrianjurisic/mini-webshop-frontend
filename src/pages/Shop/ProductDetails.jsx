@@ -32,7 +32,7 @@ export default function ProductDetails() {
   return (
     <div className="max-w-6xl mx-auto p-4 md:p-8">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 bg-white shadow-lg rounded-xl overflow-hidden">
-        {/* Slika proizvoda */}
+      
         <div className="flex items-center justify-center p-4 md:p-6 bg-gray-50">
           <img
             src={product.image_url}
@@ -41,7 +41,6 @@ export default function ProductDetails() {
           />
         </div>
 
-        {/* Detalji proizvoda */}
         <div className="flex flex-col justify-between p-4 md:p-6 space-y-6">
           <div>
             <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">

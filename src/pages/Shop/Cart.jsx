@@ -35,7 +35,7 @@ export default function Cart() {
         <div className="text-center text-gray-600 space-y-4">
           <p className="text-xl">Nemate artikala u korpi.</p>
           <button
-            onClick={() => navigate("/shop")}
+            onClick={() => navigate("/")}
             className="bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700 transition"
           >
             Nazad u kupovinu
@@ -49,7 +49,6 @@ export default function Cart() {
                 key={idx}
                 className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border p-5 rounded-lg shadow bg-white"
               >
-                {/* Naziv + cijena po komadu */}
                 <div className="flex flex-col w-full sm:w-2/3">
                   <span className="font-semibold text-lg">{item.name}</span>
                   <span className="text-sm text-gray-500">
@@ -57,7 +56,6 @@ export default function Cart() {
                   </span>
                 </div>
 
-                {/* Kontrola količine */}
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => updateQuantity(idx, -1)}
@@ -74,7 +72,6 @@ export default function Cart() {
                   </button>
                 </div>
 
-                {/* Ukupna cijena + ukloni */}
                 <div className="text-right w-full sm:w-32">
                   <span className="font-medium text-blue-700 text-lg block">
                     {(item.quantity * item.price).toFixed(2)} KM
