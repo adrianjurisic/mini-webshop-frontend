@@ -1,5 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
-import CartIcon from "../components/CartIcon";
+import { FaShoppingCart } from "react-icons/fa";
 import logo from "../logo.svg";
 
 export default function Navbar() {
@@ -20,12 +20,20 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-gray-900 text-white px-6 py-3 flex justify-between items-center shadow-md">
-      <button onClick={handleLogoClick} className="flex items-center gap-2">
-        <img src={logo} alt="MiniWebshop logo" className="h-8 w-auto" />
-      </button>
+    <nav className="bg-gray-900 text-white px-4 py-3 flex justify-between items-center shadow-md">
+      {/* Mobile: samo korpa */}
+      <div className="md:hidden">
+        <Link to="/shop/cart" className="text-2xl">
+          <FaShoppingCart />
+        </Link>
+      </div>
 
-      <div className="flex gap-4 items-center">
+      {/* Desktop: logo + linkovi */}
+      <div className="hidden md:flex items-center gap-2 cursor-pointer" onClick={handleLogoClick}>
+        <img src={logo} alt="MiniWebshop logo" className="h-8 w-auto" />
+      </div>
+
+      <div className="hidden md:flex gap-4 items-center">
         {isAdmin ? (
           <>
             <Link to="/admin/dashboard" className="hover:underline">
@@ -46,8 +54,8 @@ export default function Navbar() {
             <Link to="/" className="hover:underline">
               Početna
             </Link>
-            <Link to="/shop/cart" className="hover:underline">
-              <CartIcon />
+            <Link to="/shop/cart" className="hover:underline text-xl">
+              <FaShoppingCart />
             </Link>
             <Link
               to="/admin/login"
