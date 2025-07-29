@@ -7,8 +7,11 @@ Ovo je frontend dio mini webshop aplikacije napravljen u React.js. Aplikacija pr
 ## 🚀 Pokretanje projekta
 
 > Backend API mora biti pokrenut i dostupan za ispravan rad aplikacije.
+> Link za pokretanje backend-a: `https://mini-webshop-backend.onrender.com/`
+  (nakon 15 minuta nekorištenja mora se ponovo pokrenuti)
 
-uskoro...
+> Nakon uspješno pokrenutog backend-a
+> Link aplikacije: `https://mini-webshop-frontend-gamma.vercel.app/`
 
 ## 👤 Tipovi korisnika
 
@@ -36,5 +39,5 @@ uskoro...
 
 ## 🌐 Deploy
 
-uskoro...
-
+- Vercel
+- Link: `https://mini-webshop-frontend-gamma.vercel.app/`
