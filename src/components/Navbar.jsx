@@ -19,7 +19,13 @@ export default function Navbar() {
 
     updateCartCount();
     window.addEventListener("storage", updateCartCount);
-    return () => window.removeEventListener("storage", updateCartCount);
+
+    const interval = setInterval(updateCartCount, 500);
+
+    return () => {
+      window.removeEventListener("storage", updateCartCount);
+      clearInterval(interval);
+    };
   }, []);
 
   const handleLogout = () => {

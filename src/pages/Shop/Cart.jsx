@@ -47,10 +47,10 @@ export default function Cart() {
             {cart.map((item, idx) => (
               <li
                 key={idx}
-                className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border p-5 rounded-lg shadow bg-white"
+                className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 border p-4 rounded-lg shadow bg-white"
               >
-                <div className="flex flex-col w-full sm:w-2/3">
-                  <span className="font-semibold text-lg">{item.name}</span>
+                <div className="flex flex-col w-full md:w-2/3">
+                  <span className="font-semibold text-lg mb-1">{item.name}</span>
                   <span className="text-sm text-gray-500">
                     {item.price.toFixed(2)} KM / kom
                   </span>
@@ -59,20 +59,20 @@ export default function Cart() {
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => updateQuantity(idx, -1)}
-                    className="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded text-lg font-bold"
+                    className="px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded text-lg font-bold"
                   >
                     −
                   </button>
                   <span className="text-lg">{item.quantity}</span>
                   <button
                     onClick={() => updateQuantity(idx, 1)}
-                    className="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded text-lg font-bold"
+                    className="px-2 py-1 bg-gray-200 hover:bg-gray-300 rounded text-lg font-bold"
                   >
                     +
                   </button>
                 </div>
 
-                <div className="text-right w-full sm:w-32">
+                <div className="text-right md:text-right w-full md:w-32">
                   <span className="font-medium text-blue-700 text-lg block">
                     {(item.quantity * item.price).toFixed(2)} KM
                   </span>
@@ -87,11 +87,11 @@ export default function Cart() {
             ))}
           </ul>
 
-          <div className="text-right mt-10 text-2xl font-bold">
+          <div className="text-center md:text-right mt-10 text-2xl font-bold">
             Ukupno: {getTotal()} KM
           </div>
 
-          <div className="text-right mt-6">
+          <div className="text-center md:text-right mt-6">
             <button
               onClick={() => navigate("/shop/checkout")}
               className="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded text-lg transition"
